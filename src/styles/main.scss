@@ -1,2 +1,26 @@
 @import '~bootstrap/scss/bootstrap';
-@import './fontawesome/fontawesome.scss';
+
+.menu__container {
+  padding: 20px 0;
+}
+
+.button__container {
+  display: none;
+  & i {
+    color: #fff;
+  }
+}
+
+.content__container {
+  padding: 20px;
+}
+
+@media screen and (max-width: 575px) {
+  .button__container {
+    display: block;
+  }
+
+  .menu__container {
+    padding: 0;
+  }
+}
