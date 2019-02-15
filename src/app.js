@@ -4,6 +4,7 @@ import axios from 'axios';
 const MOBILE_SCREEN_SIZE = 575;
 const menuButton = document.getElementById('menu-button');
 const menuContainer = document.getElementById('menu-container');
+const menu = document.getElementById('menu');
 const searchForm = document.getElementById('search-form');
 const clearButton = document.getElementById('button-clear');
 const searchButton = document.getElementById('button-search');
@@ -97,6 +98,6 @@ const submitSearchForm = async e => {
 };
 
 menuButton.addEventListener('click', toggleMenu);
-menuContainer.addEventListener('click', selectMenuTab);
+menu.addEventListener('click', selectMenuTab);
 clearButton.addEventListener('click', clearInputFields);
 searchButton.addEventListener('click', submitSearchForm);
