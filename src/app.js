@@ -25,6 +25,22 @@ window.onload = async () => {
   });
 };
 
+const loadCities = async e => {
+  const select = e.target;
+  const countrySelected = select.options[select.selectedIndex].value;
+  console.log(countrySelected);
+  // Here to get cities list from API and populate city option list
+  console.log(select);
+  if (select.id === 'hotel-country') {
+    hotelCitySelect.removeAttribute('disabled');
+  }
+  if (select.id === 'car-country') {
+    carCitySelect.removeAttribute('disabled');
+  }
+};
+hotelCountrySelect.addEventListener('change', loadCities);
+carCountrySelect.addEventListener('change', loadCities);
+
 // Set date's range limits
 const parseDate = day => {
   let dd = day.getDate();
