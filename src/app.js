@@ -8,6 +8,22 @@ const menu = document.getElementById('menu');
 const searchForm = document.getElementById('search-form');
 const clearButton = document.getElementById('button-clear');
 const searchButton = document.getElementById('button-search');
+const hotelCountrySelect = document.getElementById('hotel-country');
+const hotelCitySelect = document.getElementById('hotel-city');
+const carCountrySelect = document.getElementById('car-country');
+const carCitySelect = document.getElementById('car-city');
+
+window.onload = async () => {
+  const res = await axios.get('https://restcountries.eu/rest/v2/all');
+  res.data.forEach(country => {
+    const option1 = document.createElement('option');
+    const option2 = document.createElement('option');
+    option1.innerText = country.name;
+    option2.innerText = country.name;
+    hotelCountrySelect.appendChild(option1);
+    carCountrySelect.appendChild(option2);
+  });
+};
 
 // Set date's range limits
 const parseDate = day => {
@@ -37,8 +53,14 @@ const tabsState = {
 
 const formFields = {
   flights: ['start-date', 'end-date', 'flight-from', 'flight-to'],
-  hotels: ['start-date', 'end-date', 'hotel-amenities', 'hotel-location'],
-  cars: ['start-date', 'end-date', 'car-type', 'car-location']
+  hotels: [
+    'start-date',
+    'end-date',
+    'hotel-amenities',
+    'hotel-country',
+    'hotel-city'
+  ],
+  cars: ['start-date', 'end-date', 'car-type', 'car-country', 'car-city']
 };
 
 const formSections = {
@@ -93,8 +115,6 @@ const submitSearchForm = async e => {
       formFields[tabsState.selected].includes(element.id)
   );
   console.log(values);
-  const countries = await axios.get('https://restcountries.eu/rest/v2/all');
-  console.log(countries);
 };
 
 menuButton.addEventListener('click', toggleMenu);
