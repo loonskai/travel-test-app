@@ -22,4 +22,17 @@ const toggleMenu = () => {
       : 'block';
 };
 
+const selectMenuTab = e => {
+  const selectedTab = e.target;
+  const menuTabs = [...e.target.parentElement.children];
+  menuTabs.forEach(tab => {
+    if (tab === selectedTab) {
+      tab.classList.add('active');
+    } else {
+      tab.classList.remove('active');
+    }
+  });
+};
+
 menuButton.addEventListener('click', toggleMenu);
+menuContainer.addEventListener('click', selectMenuTab);
