@@ -11,6 +11,12 @@ const tabsState = {
   selected: 'flights'
 };
 
+const formFields = {
+  flights: ['start-date', 'end-date', 'flight-from', 'flight-to'],
+  hotels: ['start-date', 'end-date', 'hotel-amenities', 'hotel-location'],
+  cars: ['start-date', 'end-date', 'car-type', 'car-location']
+};
+
 const formSections = {
   flights: document.getElementById('flights-section'),
   hotels: document.getElementById('hotels-section'),
@@ -57,7 +63,11 @@ const clearInputFields = () => {
 };
 
 const submitSearchForm = e => {
-  const values = searchForm.elements;
+  const values = [...searchForm.elements].filter(
+    element =>
+      element.tagName === 'INPUT' &&
+      formFields[tabsState.selected].includes(element.id)
+  );
   console.log(values);
 };
 
