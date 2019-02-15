@@ -7,10 +7,20 @@ const searchForm = document.getElementById('search-form');
 const clearButton = document.getElementById('button-clear');
 const searchButton = document.getElementById('button-search');
 
+const tabsState = {
+  selected: 'flights'
+};
+
 const formSections = {
   flights: document.getElementById('flights-section'),
   hotels: document.getElementById('hotels-section'),
   cars: document.getElementById('cars-section')
+};
+
+const formTabs = {
+  flights: document.getElementById('flights-tab'),
+  hotels: document.getElementById('hotels-tab'),
+  cars: document.getElementById('cars-tab')
 };
 
 window.onresize = e => {
@@ -30,29 +40,13 @@ const toggleMenu = () => {
       : 'block';
 };
 
-const displaySection = id => {
-  const sectionTitle = id.split('-')[1];
-  Object.keys(formSections).forEach(section => {
-    if (section === sectionTitle) {
-      formSections[section].style.display = 'block';
-    } else {
-      formSections[section].style.display = 'none';
-    }
-  });
-};
-
 const selectMenuTab = e => {
   clearInputFields();
-  const selectedTab = e.target;
-  const menuTabs = [...e.target.parentElement.children];
-  displaySection(selectedTab.id);
-  menuTabs.forEach(tab => {
-    if (tab === selectedTab) {
-      tab.classList.add('active');
-    } else {
-      tab.classList.remove('active');
-    }
-  });
+  formTabs[tabsState.selected].classList.remove('active');
+  formSections[tabsState.selected].style.display = 'none';
+  tabsState.selected = e.target.id.split('-')[0];
+  formTabs[tabsState.selected].classList.add('active');
+  formSections[tabsState.selected].style.display = 'block';
 };
 
 const clearInputFields = () => {
