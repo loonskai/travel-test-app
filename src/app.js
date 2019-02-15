@@ -1,4 +1,5 @@
 import './styles/main.scss';
+import axios from 'axios';
 
 const MOBILE_SCREEN_SIZE = 575;
 const menuButton = document.getElementById('menu-button');
@@ -7,6 +8,28 @@ const searchForm = document.getElementById('search-form');
 const clearButton = document.getElementById('button-clear');
 const searchButton = document.getElementById('button-search');
 
+// Set date's range limits
+const parseDate = day => {
+  let dd = day.getDate();
+  let mm = day.getMonth() + 1;
+  let yyyy = day.getFullYear();
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+  return yyyy + '-' + mm + '-' + dd;
+};
+const today = new Date();
+const tomorrow = new Date();
+tomorrow.setDate(today.getDate() + 1);
+const startDay = parseDate(today);
+const endDay = parseDate(tomorrow);
+document.getElementById('start-date').setAttribute('min', startDay);
+document.getElementById('end-date').setAttribute('min', endDay);
+
+// Define selected tab state
 const tabsState = {
   selected: 'flights'
 };
@@ -47,7 +70,7 @@ const toggleMenu = () => {
 };
 
 const selectMenuTab = e => {
-  clearInputFields();
+  // clearInputFields();
   formTabs[tabsState.selected].classList.remove('active');
   formSections[tabsState.selected].style.display = 'none';
   tabsState.selected = e.target.id.split('-')[0];
@@ -62,13 +85,15 @@ const clearInputFields = () => {
   });
 };
 
-const submitSearchForm = e => {
+const submitSearchForm = async e => {
   const values = [...searchForm.elements].filter(
     element =>
       element.tagName === 'INPUT' &&
       formFields[tabsState.selected].includes(element.id)
   );
   console.log(values);
+  const countries = await axios.get('https://restcountries.eu/rest/v2/all');
+  console.log(countries);
 };
 
 menuButton.addEventListener('click', toggleMenu);
