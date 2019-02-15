@@ -1,0 +1,29 @@
+.menu__container {
+  padding: 20px 0;
+}
+
+.button__container {
+  display: none;
+  & i {
+    color: #fff;
+  }
+}
+
+.content__container {
+  padding: 20px;
+}
+
+@media screen and (max-width: 575px) {
+  .nav__link {
+    display: none;
+  }
+
+  .button__container {
+    display: block;
+  }
+
+  .menu__container {
+    display: none;
+    padding: 0;
+  }
+}

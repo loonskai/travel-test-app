@@ -1,6 +1,9 @@
 import './styles/main.scss';
 
 const MOBILE_SCREEN_SIZE = 575;
+const menuButton = document.getElementById('menu-button');
+const menuContainer = document.getElementById('menu-container');
+const formContainer = document.getElementById('form-container');
 
 window.onresize = e => {
   const screenWidth = window.innerWidth;
@@ -10,9 +13,6 @@ window.onresize = e => {
     menuContainer.style.display = 'none';
   }
 };
-
-const menuButton = document.getElementById('menu-button');
-const menuContainer = document.getElementById('menu-container');
 
 const toggleMenu = () => {
   const screenWidth = window.innerWidth;

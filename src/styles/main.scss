@@ -1,27 +1,3 @@
 @import '~bootstrap/scss/bootstrap';
-
-.menu__container {
-  padding: 20px 0;
-}
-
-.button__container {
-  display: none;
-  & i {
-    color: #fff;
-  }
-}
-
-.content__container {
-  padding: 20px;
-}
-
-@media screen and (max-width: 575px) {
-  .button__container {
-    display: block;
-  }
-
-  .menu__container {
-    display: none;
-    padding: 0;
-  }
-}
+@import './containers.scss';
+@import './formElements.scss';

@@ -15,7 +15,17 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">Travel Logo</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a href="#" class="navbar-brand">Travel Logo</a>
+          </li>
+          <li class="nav-item nav__link">
+            <a href="#" class="nav-link">Find what you want</a>
+          </li>
+          <li class="nav-item nav__link">
+            <a href="#" class="nav-link">History</a>
+          </li>
+        </ul>
         <div class="button__container" id="menu-button">
           <i class="fas fa-bars fa-2x"></i>
         </div>
@@ -40,7 +50,54 @@
               </a>
             </div>
           </div>
-          <div class="col-sm-8 content__container">col-sm-8</div>
+          <div class="col-sm-8 content__container" id="form-container">
+            <form>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label class="form__label" for="start-date"
+                      >Start Date</label
+                    >
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="start-date"
+                      placeholder="mm/dd/yyyy"
+                    />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label class="form__label" for="end-date">End Date</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="end-date"
+                      placeholder="mm/dd/yyyy"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label class="form__label" for="place-from">From</label>
+                    <input class="form-control" type="text" id="place-from" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label class="form__label" for="place-to">To</label>
+                    <input class="form-control" type="text" id="place-to" />
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-light">Clear</button>
+              <button class="btn btn-primary">Search</button>
+            </form>
+          </div>
         </div>
       </div>
     </main>
