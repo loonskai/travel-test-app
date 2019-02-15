@@ -3,7 +3,13 @@ import './styles/main.scss';
 const MOBILE_SCREEN_SIZE = 575;
 const menuButton = document.getElementById('menu-button');
 const menuContainer = document.getElementById('menu-container');
-const formContainer = document.getElementById('form-container');
+const searchForm = document.getElementById('search-form');
+
+const formSections = {
+  flights: document.getElementById('flights-section'),
+  hotels: document.getElementById('hotels-section'),
+  cars: document.getElementById('cars-section')
+};
 
 window.onresize = e => {
   const screenWidth = window.innerWidth;
@@ -22,9 +28,21 @@ const toggleMenu = () => {
       : 'block';
 };
 
+const displaySection = id => {
+  const sectionTitle = id.split('-')[1];
+  Object.keys(formSections).forEach(section => {
+    if (section === sectionTitle) {
+      formSections[section].style.display = 'block';
+    } else {
+      formSections[section].style.display = 'none';
+    }
+  });
+};
+
 const selectMenuTab = e => {
   const selectedTab = e.target;
   const menuTabs = [...e.target.parentElement.children];
+  displaySection(selectedTab.id);
   menuTabs.forEach(tab => {
     if (tab === selectedTab) {
       tab.classList.add('active');

@@ -36,22 +36,35 @@
         <div class="row">
           <div class="col-sm-4 menu__container" id="menu-container">
             <div class="list-group" id="">
-              <a href="#" class="list-group-item list-group-item-action active">
+              <a
+                href="#"
+                class="list-group-item list-group-item-action active"
+                id="tab-flights"
+              >
                 <i class="fas fa-plane"></i>
                 Flights
               </a>
-              <a href="#" class="list-group-item list-group-item-action"
-                ><i class="fas fa-hotel"></i>
+              <a
+                href="#"
+                class="list-group-item list-group-item-action"
+                id="tab-hotels"
+              >
+                <i class="fas fa-hotel"></i>
                 Hotels
               </a>
-              <a href="#" class="list-group-item list-group-item-action"
-                ><i class="fas fa-car"></i>
+              <a
+                href="#"
+                class="list-group-item list-group-item-action"
+                id="tab-cars"
+              >
+                <i class="fas fa-car"></i>
                 Cars
               </a>
             </div>
           </div>
           <div class="col-sm-8 content__container" id="form-container">
-            <form>
+            <!-- Search form -->
+            <form id="search-form">
               <div class="row">
                 <div class="col">
                   <div class="form-group">
@@ -78,22 +91,93 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <label class="form__label" for="place-from">From</label>
-                    <input class="form-control" type="text" id="place-from" />
+              <!-- Flights section -->
+              <div id="flights-section">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form__label" for="flight-from">From</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="flight-from"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form__label" for="flight-to">To</label>
+                      <input class="form-control" type="text" id="flight-to" />
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group">
-                    <label class="form__label" for="place-to">To</label>
-                    <input class="form-control" type="text" id="place-to" />
+              <!--  -->
+              <!-- Hotels section -->
+              <div id="hotels-section">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form__label" for="hotel-amenities"
+                        >Amenities</label
+                      >
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="hotel-amenities"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form__label" for="hotel-location"
+                        >Location</label
+                      >
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="hotel-location"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
+              <!--  -->
+              <!-- Cars section -->
+              <div id="cars-section">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form__label" for="car-type">Type</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="car-type"
+                        placeholder="Economy"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form__label" for="car-location"
+                        >Location</label
+                      >
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="car-location"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--  -->
               <button class="btn btn-light">Clear</button>
               <button class="btn btn-primary">Search</button>
             </form>
