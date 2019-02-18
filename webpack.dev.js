@@ -1,10 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
+const ExtractTextPlugin = require('extract-text-webpack-plugin'); //installed via npm
 
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/app.js'
+    app: './src/app.js',
+    history: './src/history.js'
   },
   module: {
     rules: [
@@ -18,26 +20,11 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function() {
-                // post css plugins, can be exported to postcss.config.js
-                return [require('autoprefixer'), require('cssnano')];
-              }
-            }
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
+        use: ExtractTextPlugin.extract([
+          'css-loader',
+          'sass-loader',
+          'postcss-loader'
+        ])
       }
     ]
   },
@@ -46,7 +33,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   output: {
-    filename: 'app.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'build')
   },
   plugins: [
@@ -58,7 +45,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'history.html',
       template: './src/history.html',
-      chunks: ['app']
-    })
+      chunks: ['history']
+    }),
+    new ExtractTextPlugin('styles.css')
   ]
 };
