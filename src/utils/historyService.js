@@ -47,7 +47,20 @@ export const createItem = ({ text, icon, closingButton }) => {
   if (closingButton) {
     const button = document.createElement('i');
     button.className = 'fas fa-times-circle list__item-close';
+    button.addEventListener('click', removeItem);
     item.appendChild(button);
   }
   return item;
+};
+
+const removeItem = e => {
+  const item = e.target.parentElement;
+  const history = JSON.parse(localStorage.getItem('history'));
+  delete history[item.id];
+  localStorage.setItem('history', JSON.stringify(history));
+  item.remove();
+  if (Object.keys(history).length === 0) {
+    const item = createItem({ text: 'No Previous Searches' });
+    document.getElementById('history-list').appendChild(item);
+  }
 };

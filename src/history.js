@@ -16,6 +16,7 @@ window.onload = () => {
         icon: true,
         closingButton: true
       });
+      item.id = key;
       listContainer.appendChild(item);
     });
   } else {
