@@ -2,6 +2,7 @@ import axios from 'axios';
 
 class Form {
   constructor(elements = {}, sections = {}, sectionSelected, values = {}) {
+    this.formContainer = elements.formContainer;
     this.form = elements.form;
     this.clearButton = elements.clearButton;
     this.submitButton = elements.submitButton;
@@ -63,8 +64,23 @@ class Form {
 
   submit(e) {
     e.preventDefault();
-    // Here to save history in Local Storage
-    console.log(this.values);
+    const id = Date.now();
+    const history = JSON.parse(localStorage.getItem('history')) || {};
+    console.log(history);
+    const newHistory = Object.assign({}, history, { [id]: this.values });
+    localStorage.setItem('history', JSON.stringify(newHistory));
+    this.showMessage('Saved to history');
+  }
+
+  showMessage(text) {
+    const message = document.createElement('div');
+    message.className = 'alert alert-success alert__message';
+    message.setAttribute('role', 'allert');
+    message.innerText = text;
+    this.formContainer.appendChild(message);
+    setTimeout(() => {
+      message.remove();
+    }, 2000);
   }
 
   changeSection(section) {

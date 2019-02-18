@@ -12,6 +12,7 @@ const menuTabs = {
 };
 
 const formElements = {
+  formContainer: document.getElementById('form-container'),
   form: document.getElementById('search-form'),
   clearButton: document.getElementById('button-clear'),
   submitButton: document.getElementById('button-search'),
