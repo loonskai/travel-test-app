@@ -95,6 +95,9 @@ class Form {
       if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'SELECT') return;
       const values = this.getFormValues();
       this.values = values;
+      if (values['start-date']) {
+        this.setMinEndDate(values['start-date']);
+      }
       this.toggleSubmitDisability(values);
     }, 0);
   }
@@ -185,25 +188,34 @@ class Form {
   }
 
   setDateLimits() {
-    const parseDate = day => {
-      let dd = day.getDate();
-      let mm = day.getMonth() + 1;
-      let yyyy = day.getFullYear();
-      if (dd < 10) {
-        dd = '0' + dd;
-      }
-      if (mm < 10) {
-        mm = '0' + mm;
-      }
-      return yyyy + '-' + mm + '-' + dd;
-    };
     const today = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
-    const startDay = parseDate(today);
-    const endDay = parseDate(tomorrow);
+    const startDay = this.parseDate(today);
+    const endDay = this.parseDate(tomorrow);
     this.startDate.setAttribute('min', startDay);
     this.endDate.setAttribute('min', endDay);
+  }
+
+  setMinEndDate(date) {
+    const startDate = new Date(date);
+    const nextDate = new Date();
+    nextDate.setDate(startDate.getDate() + 1);
+    const endDate = this.parseDate(nextDate);
+    this.endDate.setAttribute('min', endDate);
+  }
+
+  parseDate(day) {
+    let dd = day.getDate();
+    let mm = day.getMonth() + 1;
+    let yyyy = day.getFullYear();
+    if (dd < 10) {
+      dd = '0' + dd;
+    }
+    if (mm < 10) {
+      mm = '0' + mm;
+    }
+    return yyyy + '-' + mm + '-' + dd;
   }
 }
 
