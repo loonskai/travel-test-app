@@ -56,6 +56,8 @@ class Form {
       element.value = '';
     });
     this.values = {};
+    this.clearCities('hotel-country');
+    this.clearCities('car-country');
     this.toggleSubmitDisability();
   }
 
@@ -95,25 +97,61 @@ class Form {
       const option1 = document.createElement('option');
       const option2 = document.createElement('option');
       option1.innerText = country.name;
+      option1.setAttribute('data-capital', country.capital);
       option2.innerText = country.name;
+      option2.setAttribute('data-capital', country.capital);
       this.hotelCountrySelect.appendChild(option1);
       this.carCountrySelect.appendChild(option2);
     });
   }
 
-  async populateCities(e) {
+  populateCities(e) {
     const select = e.target;
-    const countrySelected = select.options[select.selectedIndex].value;
-    console.log(select);
-    console.log(countrySelected);
-    // Here to get cities list from API and populate city option list
-    // console.log(select);
-    if (select.id === 'hotel-country') {
-      this.hotelCitySelect.removeAttribute('disabled');
+    const countrySelected = select.options[select.selectedIndex];
+    if (!countrySelected.value) {
+      this.clearCities(select.id);
+      return;
     }
-    if (select.id === 'car-country') {
-      this.carCitySelect.removeAttribute('disabled');
+    const option = document.createElement('option');
+    option.innerText = countrySelected.dataset.capital;
+    this.addCities(select.id, option);
+  }
+
+  addCities(countrySelectId, option) {
+    switch (countrySelectId) {
+      case 'hotel-country': {
+        this.hotelCitySelect.innerHTML = '';
+        this.hotelCitySelect.appendChild(option);
+        this.hotelCitySelect.removeAttribute('disabled');
+        break;
+      }
+      case 'car-country': {
+        this.carCitySelect.innerHTML = '';
+        this.carCitySelect.appendChild(option);
+        this.carCitySelect.removeAttribute('disabled');
+        break;
+      }
+      default:
+        break;
     }
+  }
+
+  clearCities(countrySelectId) {
+    switch (countrySelectId) {
+      case 'hotel-country': {
+        this.hotelCitySelect.innerHTML = '';
+        this.hotelCitySelect.setAttribute('disabled', 'disabled');
+        break;
+      }
+      case 'car-country': {
+        this.carCitySelect.innerHTML = '';
+        this.carCitySelect.setAttribute('disabled', 'disabled');
+        break;
+      }
+      default:
+        break;
+    }
+    this.toggleSubmitDisability();
   }
 
   getFormValues() {

@@ -29,8 +29,8 @@ const formSections = {
 };
 
 window.onload = async () => {
-  const initialState = { selectedTab: 'flights' };
-  const form = new Form(formElements, formSections, initialState.selectedTab);
+  const appState = { selectedTab: 'flights' };
+  const form = new Form(formElements, formSections, appState.selectedTab);
 
   const toggleMenu = () => {
     const screenWidth = window.innerWidth;
