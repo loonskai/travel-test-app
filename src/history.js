@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import * as historyService from './utils/historyService';
 
 import './styles/main.scss';

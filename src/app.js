@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import Form from './components/Form';
 import './styles/main.scss';
 
