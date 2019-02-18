@@ -3,9 +3,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
 
 module.exports = {
   mode: 'development',
-  entry: './src/app.js',
+  entry: {
+    app: './src/app.js'
+  },
   module: {
     rules: [
+      {
+        test: /\.(html)$/,
+        use: [
+          {
+            loader: 'html-loader'
+          }
+        ]
+      },
       {
         test: /\.scss$/,
         use: [
@@ -41,7 +51,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      filename: 'index.html',
+      template: './src/index.html',
+      chunks: ['app']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'history.html',
+      template: './src/history.html',
+      chunks: ['app']
     })
   ]
 };
